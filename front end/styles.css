@@ -1,0 +1,87 @@
+html, body{
+    height: 100%;
+    margin: 0;
+
+
+}
+#centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+#juego{
+
+    background-image: url("fondo estandar.png");
+    background-size: cover;       /* ocupa toda la pantalla */
+     
+
+    
+    
+}
+#contenedor{
+    background-color: rgba(240, 248, 255, 0);
+    border: 10px solid white;
+    width:  50%;
+    height: 85%;
+    border-radius: 40px;
+}
+#secFlag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0);
+
+    border: 8px solid white;
+    border-top: 5px ;
+    border-left: 5px solid white;
+    border-right: 5px solid white;
+    border-radius: 29px;
+
+    height: 65%;
+
+
+}
+
+img{
+    height: 75%;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+#secRta{
+    display: grid;  
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    gap: 1em 1em; 
+
+    padding: 3rem   ;
+  
+}
+.opciones{
+    background-color: rgba(240, 248, 255, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgba(255, 255, 255, 0.521);
+    border-radius: 20px;
+    padding:0.5rem;
+
+}
+.opciones:hover{
+    
+    background-color: rgba(255, 255, 255, 0.13);
+    border: 2px solid rgb(255, 255, 255);
+    
+}
+#siguiente{
+
+
+    top: 1px;
+    right: 1PX;
+    background-image: url(flecha.png);
+    height: 4rem;
+    width: 4rem;
+}
+#contenedorLogin{
+    
+}
