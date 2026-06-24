@@ -26,11 +26,17 @@ async function login() {
     for (let i = 0; i < response.length; i++) {
         const element = response[i];
         if(correoAux == element.correo && contraAux == element.contra) {
-            loggedId = element.id_user
             localStorage.setItem("usuario", JSON.stringify(element));
 
-            console.log(loggedId);       
-            window.location.href = "juego.html";
+            console.log(loggedId); 
+            if (correoAux == "admin" && contraAux == "admin") {
+                window.location.href = "admin.html";
+                
+            }else{
+      
+                window.location.href = "juego.html";
+            }
+
 
         }
     }
@@ -316,4 +322,30 @@ async function mostrarTablaVarias() {
     }
 
     document.getElementById("tabla").innerHTML += elementosLista
+}
+
+async function getUsuario(){
+    let res = await fetch("http://localhost:4000/login")
+    let response = await res.json()
+    let elementosLista = ""
+    document.getElementById("tablaUsuarios").innerHTML=`
+    <tr>
+        <th>ID</th>
+        <th>Correo</th>
+        <th>Usuario</th>
+        <th>Contraseña</th>
+
+    </tr>`
+    for (let i = 0; i < response.length; i++) {
+        const element = response[i];
+        elementosLista += `
+        <tr>
+            <td>${element.id_user}</td>
+            <td>${element.correo}</td>
+            <td>${element.contra}</td>
+        </tr>
+        `;        
+    }
+
+    document.getElementById("tablaUsuarios").innerHTML += elementosLista
 }

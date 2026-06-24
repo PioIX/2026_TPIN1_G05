@@ -47,7 +47,10 @@ app.get ('/saludo', async function (req,res) {
 app.get('/login', async function(req,res){
     let respuesta;
 
-    respuesta = await realizarQuery(`SELECT * FROM Usuarios`)
+    respuesta = await realizarQuery(`
+        SELECT * 
+        FROM Usuarios 
+        ORDER BY id_user`)
 
 
         
@@ -122,7 +125,7 @@ app.get('/partida', async function(req,res){
     respuesta = await realizarQuery(`
         SELECT * FROM Partidas  
         WHERE id_user="${req.query.id_user}" 
-        ORDER BY puntaje`)
+        ORDER BY puntaje DESc`)
 
 
         
@@ -148,4 +151,3 @@ app.get('/partidasVarias', async function(req,res){
     
 })
 
-// "explorer.sortOrder": "type"
