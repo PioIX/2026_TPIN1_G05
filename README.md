@@ -6,8 +6,6 @@ Integrantes:
 - Décima
 - Jozuvaitis
 - Ticona
-<<<<<<< HEAD
-
 
 
 
@@ -71,5 +69,3 @@ Elaboración del diagrama de Gantt.
 - Corrección de errores detectados en el testeo.
 - Publicación y presentación del proyecto.
 
-=======
->>>>>>> 2aa41de7a282147b314cfa95bd5b55b577133a60
