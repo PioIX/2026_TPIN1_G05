@@ -1,7 +1,7 @@
 # 2026_TPIN1_G05
 Integrantes:
 
-- De la Rosa
+- De La Rosa
 - Parente
 - Decima
 - Jozuvaitis
