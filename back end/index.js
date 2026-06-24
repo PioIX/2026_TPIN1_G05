@@ -27,7 +27,6 @@ app.get('/', function(req, res){
  * res = response. Voy a responderle al cliente
  */
 
-
 app.get ('/saludo', async function (req,res) {
 	res.send({respuesta: "Hola"});
 });
@@ -86,13 +85,11 @@ app.post('/registrarse', async (req, res) => {
 
 
 
-app.put('/CargarPuntaje', async (req, res) => {
+app.post('/CargarPuntaje', async (req, res) => {
     await realizarQuery(`
-        UPDATE Partidas 
-        SET cant_correctas=${req.body.cant_correctas},
-        puntaje=${req.body.puntaje},
-        id_user=${req.body.id_user}
-        WHERE id_user=${req.body.id_user}
+     INSERT INTO Partidas (cant_correctas, puntaje, id_user)
+        VALUES(${req.body.cant_correctas},${req.body.puntaje},${req.body.id_user})
+    
     `);
 
     res.send("puntaje actualizado");
@@ -132,3 +129,23 @@ app.get('/partida', async function(req,res){
     res.send(respuesta);  
     
 })
+
+app.get('/partidasVarias', async function(req,res){
+    let respuesta;
+
+    respuesta = await realizarQuery(`
+    SELECT Usuarios.usuario, MAX(Partidas.puntaje) AS puntajes
+    FROM Usuarios 
+    INNER JOIN Partidas ON Usuarios.id_user = Partidas.id_user
+    GROUP BY Partidas.id_user, Usuarios.usuario
+
+    
+    `)
+
+
+        
+    res.send(respuesta);  
+    
+})
+
+// "explorer.sortOrder": "type"

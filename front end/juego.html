@@ -6,18 +6,19 @@
     <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
-<body id="juego">
+<body id="juego" onload="cambiarBandera()">
     
-    <button id="siguiente"> </button>
+    <img onclick="siguiente()" id="siguienteBtn" src="flecha.png" alt="">
+    <img onclick= "generarOpciones()" id="ashudaBtn" src="signoPregunta.png" alt="">
     <div id="centrar">
 
         <div id="contenedor">
             <div id="secFlag">
                 
             </div>
-            <div id="secRta">
-                <input id="inputRta" type="text" placeholder="uiyegveugrfygiuhg" >
-                <button onclick="validarRta()">fhbuyerfg</button>
+            <div  id="secRta" style="display: block; margin-top: 0;">
+                <input style="margin-bottom: 1.5rem; margin-top: 0;" id="inputRta" type="text" placeholder="¿De qué país es esta bandera?" >
+                <button onclick="validarRta()" >enviar</button>
 
             </div>
         </div>

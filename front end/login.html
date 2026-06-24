@@ -3,22 +3,34 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>punto 1</title>
+        <link rel="stylesheet" href="styles.css">
         
     </head>
     <header>
 
     </header>
 
-    <body id="login">
+    <body>
+
         <div id="centrar">
             <div id="contenedor">
-                <div>
-
-                    <input type="text" class="inputUser" id="correo" placeholder="Ingrese su correo">
-                    <input type="text" class="inputUser" id="contra" placeholder="Ingrese su contrasaña">
+                <div id="loginContenedor">
+                    <div class="inputContenedor">
+                        <h3>Inciar sesion</h3>
+                        <input type="text" class="inputUser" id="correo" placeholder="Ingrese su correo">
+                        <input type="password" class="inputUser" id="contra" placeholder="Ingrese su contrasaña">
+                        <button class="loginBtn" onclick="login()">Ingresar</button>
+                    </div>
                 </div>
-                
-                <input type="text" class="inputUser" id="usuario" placeholder="Ingrese su usuario">
+                <div id="centrar" style="align-items:baseline;">
+
+                    <div class="inputContenedor">
+
+
+                        <input type="text" class="inputUser" id="usuario" placeholder="Ingrese su usuario">
+                        <button class="loginBtn" onclick="tomarDatosLogin()">Registrarse</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -26,7 +38,7 @@
 
 
 
-        <button onclick="tomarDatosLogin()">boton</button>
+ 
 
 
         <script src="dom.js"></script>
