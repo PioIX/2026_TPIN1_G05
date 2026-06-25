@@ -55,19 +55,23 @@ async function registrarse(datos) {
     
 }
 function tomarDatosLogin() {
-
-
-    let datos = {
-        usuario: ingresoUsuario(),
-        correo: ingresoCorreo(),
-        contra: ingresoContra()
+    if (ingresoUsuario()!="" || ingresoCorreo()!="" || ingresoContra()!="") {
+        
+        let datos = {
+            usuario: ingresoUsuario(),
+            correo: ingresoCorreo(),
+            contra: ingresoContra()
+        
     
-
+        }
+    
+    
+        registrarse(datos)
+        login()
+    }else{
+        alert("usario no valido intente de nuevo")
     }
 
-
-    registrarse(datos)
-    login()
 }
 
 
@@ -337,11 +341,14 @@ async function getUsuario(){
 
     </tr>`
     for (let i = 0; i < response.length; i++) {
+
         const element = response[i];
+        console.log(element.contra)
         elementosLista += `
         <tr>
             <td>${element.id_user}</td>
             <td>${element.correo}</td>
+            <td>${element.usuario}</td>
             <td>${element.contra}</td>
         </tr>
         `;        
@@ -349,3 +356,48 @@ async function getUsuario(){
 
     document.getElementById("tablaUsuarios").innerHTML += elementosLista
 }
+
+
+async function llamadoAlSelect() {
+
+
+    let res = await fetch("http://localhost:4000/login")
+    let response = await res.json()
+    let elementosLista = ""
+    document.getElementById("selectUser").innerHTML = elementosLista
+
+    for (let i = 0; i < response.length; i++) {
+        const element = response[i];
+        elementosLista += `
+        <option value=${element.id_user}> ${element.id_user} - ${element.usuario} - ${element.correo}</option>
+        `;        
+    }
+
+    document.getElementById("selectUser").innerHTML += elementosLista
+    
+}
+
+
+
+function postUserData(){
+    
+    
+    if (ingresoUsuarioAdmin()!="" || ingresoCorreoAdmin()!="" || ingresoContraAdmin()!="") {
+        
+        let datos = {
+            usuario: ingresoUsuarioAdmin(),
+            correo: ingresoCorreoAdmin(),
+            contra: ingresoContraAdmin()
+        
+    
+        }
+    
+    
+        registrarse(datos)
+
+    }else{
+        alert("usario no valido intente de nuevo")
+    }
+}
+
+

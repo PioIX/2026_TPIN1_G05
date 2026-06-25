@@ -70,7 +70,9 @@ app.post('/registrarse', async (req, res) => {
  
 
     if (existe.length > 0) { 
-        return res.send("usuario duplicado");
+        
+
+        return false
     }
 
     await realizarQuery(`
@@ -150,4 +152,8 @@ app.get('/partidasVarias', async function(req,res){
     res.send(respuesta);  
     
 })
+
+//                                  funciones de administrador
+// ==========================================================================================================================
+
 
