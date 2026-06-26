@@ -51,10 +51,13 @@ async function registrarse(datos) {
         body: JSON.stringify(datos) //JSON.stringify convierte de objeto a JSON
     })
     
-    
+    let res = await response.json()
+    console.log("===========================================")
+    console.log(res)
+    return res.existe
     
 }
-function tomarDatosLogin() {
+async function tomarDatosLogin() {
     if (ingresoUsuario()!="" || ingresoCorreo()!="" || ingresoContra()!="") {
         
         let datos = {
@@ -66,9 +69,17 @@ function tomarDatosLogin() {
         }
     
     
-        registrarse(datos)
-        login()
-    }else{
+        const repetido = await registrarse(datos)
+        console.log("hdfsgogoijjfehopiuefj")
+        console.log(repetido)
+        if (repetido == true) {
+            alert("el usuario ya existe")
+        }else{
+
+            login()
+        }
+    }else{ 
+
         alert("usario no valido intente de nuevo")
     }
 
@@ -379,7 +390,7 @@ async function llamadoAlSelect() {
 
 
 
-function postUserData(){
+async function postUserData(){
     
     
     if (ingresoUsuarioAdmin()!="" || ingresoCorreoAdmin()!="" || ingresoContraAdmin()!="") {
@@ -393,7 +404,12 @@ function postUserData(){
         }
     
     
-        registrarse(datos)
+        const repetido = await registrarse(datos)
+        if (repetido == true) {
+
+            
+            alert("el usuario ya existe")
+        }
 
     }else{
         alert("usario no valido intente de nuevo")

@@ -63,16 +63,21 @@ app.get('/login', async function(req,res){
 
 
 app.post('/registrarse', async (req, res) => {
-
+    let aux={
+        existe : false
+    }
     let existe = await realizarQuery( 
         `SELECT * FROM Usuarios WHERE usuario = "${req.body.usuario}" or correo = "${req.body.correo}"`
     ); 
  
 
     if (existe.length > 0) { 
-        
 
-        return false
+        aux={
+            existe : true
+        }
+        return res.send(aux);
+
     }
 
     await realizarQuery(`
@@ -82,7 +87,7 @@ app.post('/registrarse', async (req, res) => {
     
 
 
-    res.send("usuario agregado");
+    return res.send(aux);
 });
 
 
