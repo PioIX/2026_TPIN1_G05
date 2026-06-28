@@ -206,7 +206,7 @@ function validarRta(){
             document.getElementById("juego").innerHTML += `
             <img onclick= "window.location.reload()" id="voverAJugarBtn" src="flecha de recarga.png" alt="">`
 
-            tomarDatosPost()
+            postPuntajeData()
         }
     }else{
         console.log("weweeee")
@@ -250,7 +250,7 @@ function validarOpciones(aux, i){
             document.getElementById("juego").innerHTML += `
             <img onclick= "window.location.reload()" id="voverAJugarBtn" src="flecha de recarga.png" alt="">`
 
-            tomarDatosPost()
+            postPuntajeData()
         }
     }else{
         console.log("wewewewewe")
@@ -266,7 +266,7 @@ function validarOpciones(aux, i){
 //                            cargar resltados
 // ==============================================================================================
 
-async function llamadoAlPost(datos) {
+async function postPuntaje(datos) {
     const response = await fetch('http://localhost:4000/CargarPuntaje',{
         method:"POST",
         headers: { 
@@ -277,14 +277,14 @@ async function llamadoAlPost(datos) {
 
 }
 
-function tomarDatosPost(){
+function postPuntajeData(){
 
     let datos = {
         cant_correctas: cantCorrectas,
         puntaje : puntaje,
         id_user : loggedId.id_user
     }
-    llamadoAlPost(datos)
+    postPuntaje(datos)
 
 }
 function irATablas(){
@@ -295,6 +295,8 @@ async function mostrarTabla() {
     
     let res = await fetch(`http://localhost:4000/partida?id_user=${loggedId.id_user}`)
     let response = await res.json()
+    console.log(response.puntajes);
+    
     let elementosLista = ""
     document.getElementById("tabla").innerHTML=`
     <tr>
@@ -307,7 +309,7 @@ async function mostrarTabla() {
         elementosLista += `
         <tr>
             <td>${i+1}.</td>
-            <td>${element.cant_correctas}</td>
+            <td>${element.cant_correctas}</td
             <td>${element.puntaje}</td>
         </tr>
         `;        
@@ -421,7 +423,7 @@ async function postUserData(){
     llamadoAlSelect()
 }
 
-async function llamadoAlPut(datos) {
+async function putUser(datos) {
     const response = await fetch('http://localhost:4000/actualizarUser',{
         method:"PUT",
         
@@ -436,7 +438,7 @@ async function llamadoAlPut(datos) {
 
 }
 
-async function updateUserData(){
+async function putUserData(){
     
     let datos = {
         id_user: ingresoUserId(),
@@ -447,12 +449,12 @@ async function updateUserData(){
  
     }
     
-    await llamadoAlPut(datos)
+    await putUser(datos)
     getUsuario()
     llamadoAlSelect()
 }
 
-async function llamadoAlDeleteUser(datos) {
+async function deleteUser(datos) {
     const response = await fetch('http://localhost:4000/eliminarUser',{
         method:"DELETE",
         headers: {
@@ -463,12 +465,12 @@ async function llamadoAlDeleteUser(datos) {
 
 }
 
-async function tomarDatosDelete() {
+async function deleteUserData() {
     let datos = {
         id_user: ingresoUserId()
     }
 
-    await llamadoAlDeleteUser(datos)
+    await deleteUser(datos)
     getUsuario()
     llamadoAlSelect()
     
@@ -499,7 +501,7 @@ async function getPaises() {
     document.getElementById("paises").innerHTML += elementosLista
 }
 
-async function llamadoAlPostPais(datos) {
+async function postPais(datos) {
     const response = await fetch('http://localhost:4000/agregarPais',{
         method:"POST",
         headers: {
@@ -527,7 +529,7 @@ async function postPaisData(){
         }
     
     
-        await llamadoAlPostPais(datos)
+        await postPais(datos)
         getPaises()
     }else{
         alert("pais no valido intente de nuevo")
@@ -535,7 +537,7 @@ async function postPaisData(){
 
 }
 
-async function llamadoAlPutPais(datos) {
+async function putPais(datos) {
     const response = await fetch('http://localhost:4000/updatePais',{
         method:"PUT",
         headers: { 
@@ -548,7 +550,7 @@ async function llamadoAlPutPais(datos) {
 
 }
 
-async function tomarDatosPutPais(){
+async function putPaisData(){
 
     let datos = {
         id_pais: ingresoPaisId(),
@@ -558,11 +560,11 @@ async function tomarDatosPutPais(){
     
 
     }
-    await llamadoAlPutPais(datos)
+    await putPais(datos)
     getPaises()
 }
 
-async function llamadoAlDeletePais(datos) {
+async function deletePais(datos) {
     const response = await fetch('http://localhost:4000/eliminarPais',{
         method:"DELETE",
         headers: {
@@ -573,12 +575,12 @@ async function llamadoAlDeletePais(datos) {
 
 }
 
-async function tomarDatosDeletePais() {
+async function deletePaisData() {
     let datos = {
         id_pais: ingresoPaisId()
     }
 
-    await llamadoAlDeletePais(datos)
+    await deletePais(datos)
     getPaises()
 
     
