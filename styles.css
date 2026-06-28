@@ -1,7 +1,5 @@
-*{
-    margin: 0;
-    padding: 0;
-
+html, body{
+    height: 100%;
 
 }   
 
@@ -28,9 +26,10 @@
 }
 body{
 
-    background-image: url("fondo estandar.png");
+    background-image: url("a.png");
     background-size: cover;    
     position: relative;
+    background-color: black;
 
     
     
@@ -194,4 +193,36 @@ tr:nth-child(even) {
     top: 1em;
     height: 2.5rem;
     border: 3px solid white;
+}
+
+#admin{
+    background-color: black;
+}
+select{
+    background-color: grey;
+    display: block;
+}
+
+.contenedores{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+h2{
+    color: white;
+}
+.contenedores > div{
+    width: 35%;
+}
+
+#irAlJuego{
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: grey;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 10px;
+    text-decoration: none;
 }

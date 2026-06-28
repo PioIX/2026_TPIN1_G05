@@ -162,3 +162,105 @@ app.get('/partidasVarias', async function(req,res){
 // ==========================================================================================================================
 
 
+app.put('/actualizarUser', async (req, res) => {
+
+
+    switch (req.body.tipo) {
+        case "usuario":
+
+            await realizarQuery(`
+                UPDATE Usuarios 
+                SET usuario='${req.body.usuario}'         
+                WHERE id_user=${req.body.id_user}
+            `); 
+
+            break;
+        case "correo":
+
+            await realizarQuery(`
+                UPDATE Usuarios 
+                SET correo='${req.body.correo}'          
+                WHERE id_user=${req.body.id_user}
+            `); 
+
+            break;
+        case "contra":
+
+            await realizarQuery(`
+                UPDATE Usuarios 
+                SET contra='${req.body.contra}'             
+                WHERE id_user=${req.body.id_user}
+            `);        
+
+            break;
+        default:
+
+            await realizarQuery(`
+                UPDATE Usuarios 
+                SET usuario='${req.body.usuario}', 
+                correo='${req.body.correo}',
+                contra='${req.body.contra}'
+                WHERE id_user=${req.body.id_user}
+            `);
+
+            break;
+    }
+
+
+    res.send("usuario actualizado");
+});
+
+app.delete('/eliminarUser', async (req, res) => {
+      console.log(req.body)
+    await realizarQuery(`
+        DELETE FROM Partidas WHERE id_user=${req.body.id_user}
+    `);
+    
+    await realizarQuery(`
+    
+        DELETE FROM Usuarios WHERE id_user=${req.body.id_user}
+    `);  
+
+    res.send("usuario eliminado");
+});
+
+app.post('/agregarPais', async (req, res) => {
+
+    let existe = await realizarQuery( 
+        `SELECT * FROM Paises 
+        WHERE nombre = "${req.body.nombre}" or nombre_archivo="${req.body.nombre_archivo}"`
+    ); 
+ 
+
+    if (existe.length > 0) { 
+        return res.send("pais duplicado");
+    }
+
+    await realizarQuery(`
+        INSERT INTO Paises (nombre, nombre_archivo)
+        VALUES('${req.body.nombre}', '${req.body.nombre_archivo}') 
+    `);
+
+    res.send("pais agregado");
+});
+
+
+app.put('/updatePais', async (req, res) => {
+    await realizarQuery(`
+        UPDATE Paises 
+        SET nombre='${req.body.nombre}', 
+        nombre_archivo='${req.body.nombre_archivo}'
+        WHERE id_pais=${req.body.id_pais}
+    `);
+
+    res.send("Juego actualizado");
+});
+
+app.delete('/eliminarPais', async (req, res) => {
+      console.log(req.body)
+    await realizarQuery(`
+        DELETE FROM Paises WHERE id_pais=${req.body.id_pais}
+    `);
+
+    res.send("pais eliminado");
+});

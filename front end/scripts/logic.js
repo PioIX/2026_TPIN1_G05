@@ -57,6 +57,7 @@ async function registrarse(datos) {
     return res.existe
     
 }
+
 async function tomarDatosLogin() {
     if (ingresoUsuario()!="" || ingresoCorreo()!="" || ingresoContra()!="") {
         
@@ -70,7 +71,7 @@ async function tomarDatosLogin() {
     
     
         const repetido = await registrarse(datos)
-        console.log("hdfsgogoijjfehopiuefj")
+
         console.log(repetido)
         if (repetido == true) {
             alert("el usuario ya existe")
@@ -93,9 +94,10 @@ function enteroAleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 async function cambiarBandera(){
-    banderaId = enteroAleatorio(1, 50 )
+    
     let res = await fetch("http://localhost:4000/banderas")
     let response = await res.json()
+    banderaId = enteroAleatorio(1, response.length)
     arrayBanderas = response
     console.log(arrayBanderas)
     for (let i = 0; i < response.length; i++) {
@@ -346,8 +348,8 @@ async function getUsuario(){
     document.getElementById("tablaUsuarios").innerHTML=`
     <tr>
         <th>ID</th>
-        <th>Correo</th>
         <th>Usuario</th>
+        <th>Correo</th>
         <th>Contraseña</th>
 
     </tr>`
@@ -358,8 +360,8 @@ async function getUsuario(){
         elementosLista += `
         <tr>
             <td>${element.id_user}</td>
-            <td>${element.correo}</td>
             <td>${element.usuario}</td>
+            <td>${element.correo}</td>
             <td>${element.contra}</td>
         </tr>
         `;        
@@ -373,6 +375,7 @@ async function llamadoAlSelect() {
 
 
     let res = await fetch("http://localhost:4000/login")
+
     let response = await res.json()
     let elementosLista = ""
     document.getElementById("selectUser").innerHTML = elementosLista
@@ -393,12 +396,12 @@ async function llamadoAlSelect() {
 async function postUserData(){
     
     
-    if (ingresoUsuarioAdmin()!="" || ingresoCorreoAdmin()!="" || ingresoContraAdmin()!="") {
+    if (ingresoUsuario()!="" || ingresoCorreo()!="" || ingresoContra()!="") {
         
         let datos = {
-            usuario: ingresoUsuarioAdmin(),
-            correo: ingresoCorreoAdmin(),
-            contra: ingresoContraAdmin()
+            usuario: ingresoUsuario(),
+            correo: ingresoCorreo(),
+            contra: ingresoContra()
         
     
         }
@@ -414,6 +417,169 @@ async function postUserData(){
     }else{
         alert("usario no valido intente de nuevo")
     }
+    getUsuario()
+    llamadoAlSelect()
+}
+
+async function llamadoAlPut(datos) {
+    const response = await fetch('http://localhost:4000/actualizarUser',{
+        method:"PUT",
+        
+        headers: { 
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos) 
+    })
+    console.log("wwwwww")
+
+
+
+}
+
+async function updateUserData(){
+    
+    let datos = {
+        id_user: ingresoUserId(),
+        usuario: ingresoUsuario(),
+        correo: ingresoCorreo(),
+        contra: ingresoContra(),
+        tipo: ingresoTipo()
+ 
+    }
+    
+    await llamadoAlPut(datos)
+    getUsuario()
+    llamadoAlSelect()
+}
+
+async function llamadoAlDeleteUser(datos) {
+    const response = await fetch('http://localhost:4000/eliminarUser',{
+        method:"DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos)
+    })
+
+}
+
+async function tomarDatosDelete() {
+    let datos = {
+        id_user: ingresoUserId()
+    }
+
+    await llamadoAlDeleteUser(datos)
+    getUsuario()
+    llamadoAlSelect()
+    
+}
+
+async function getPaises() {
+    
+    let res = await fetch("http://localhost:4000/banderas")
+    let response = await res.json()
+    let elementosLista = ""
+    document.getElementById("paises").innerHTML=`
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Nombre de archivo</th>
+    </tr>`
+    for (let i = 0; i < response.length; i++) {
+        const element = response[i];
+        elementosLista += `
+        <tr>
+            <td>${element.id_pais}</td>
+            <td>${element.nombre}</td>
+            <td>${element.nombre_archivo}.png</td>
+        </tr>
+        `;        
+    }
+
+    document.getElementById("paises").innerHTML += elementosLista
+}
+
+async function llamadoAlPostPais(datos) {
+    const response = await fetch('http://localhost:4000/agregarPais',{
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(datos) 
+    })
+
+
+
 }
 
 
+async function postPaisData(){
+    
+    
+    if (ingresoPaisNom()!="" || ingresoPaisArchivo()!="") {
+        
+        let datos = {
+            nombre: ingresoPaisNom(),
+            nombre_archivo: ingresoPaisArchivo()
+
+        
+    
+        }
+    
+    
+        await llamadoAlPostPais(datos)
+        getPaises()
+    }else{
+        alert("pais no valido intente de nuevo")
+    }
+
+}
+
+async function llamadoAlPutPais(datos) {
+    const response = await fetch('http://localhost:4000/updatePais',{
+        method:"PUT",
+        headers: { 
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos) 
+    })
+
+
+
+}
+
+async function tomarDatosPutPais(){
+
+    let datos = {
+        id_pais: ingresoPaisId(),
+        nombre: ingresoPaisNom(),
+        nombre_archivo: ingresoPaisArchivo()
+
+    
+
+    }
+    await llamadoAlPutPais(datos)
+    getPaises()
+}
+
+async function llamadoAlDeletePais(datos) {
+    const response = await fetch('http://localhost:4000/eliminarPais',{
+        method:"DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(datos)
+    })
+
+}
+
+async function tomarDatosDeletePais() {
+    let datos = {
+        id_pais: ingresoPaisId()
+    }
+
+    await llamadoAlDeletePais(datos)
+    getPaises()
+
+    
+}

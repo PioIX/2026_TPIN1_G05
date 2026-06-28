@@ -4,33 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
-    <table id="tablaUsuarios"> </table>
 
-    <div style="width: 50%;">
-
-        <input id="correo" type="text" placeholder="correo">
-        <input id="usuario" type="text" placeholder="usuario">
-        <input id="contra" type="text" placeholder="contraseña">
-
-
-
+<body id="admin" onload="getUsuario(); llamadoAlSelect(), getPaises()"></body>
+    <div class="contenedores">
+        <div>
+            <h2>Usuarios</h2>
+            <div style="width: 100%;">
+        
+                <input id="correo" type="text" placeholder="correo">
+                <input id="usuario" type="text" placeholder="usuario">
+                <input id="contra" type="text" placeholder="contraseña">
+                
+                
+                
+            </div>
+            
+            <select id="selectUser">
+                
+            </select>
+            
+            <button onclick="postUserData()" >registrarse</button>
+            <button onclick="tomarDatosDelete()">eliminar</button>
+            <button onclick="updateUserData()">actualizar</button>
+        
+        
+            
+            <select id="tipo">
+                <option value="usuario">usuario</option>
+                <option value="correo">correo</option>
+                <option value="contra">contrasaña</option>
+                <option value="todo">todo</option>
+            </select>
+        </div>
+        <div>
+    
+            <table id="tablaUsuarios"> </table>
+        </div>
     </div>
 
-    <select id="selectUser">
+    <div>
+        <div style="width: 70%;">
+            <input id="idPais" type="number" placeholder="id">
+            <input id="nomPais" type="text" placeholder="nombre">
+            <input id="nomArchivo" type="text" placeholder="nombre de archivo">
 
-    </select>
+
+            <button onclick="postPaisData()" >subir</button>
+            <button onclick="tomarDatosDeletePais()">eliminar</button>
+            <button onclick="tomarDatosPutPais()">actualizar</button>
+        </div>
+        <div id="centrar">
+            <table id="paises"></table>
     
-    <table id="paises"></table>
+        </div>
+    </div>
 
-    <input id="nomPais" type="text">
-    <input id="nomArchivo" type="text">
+    <a id="irAlJuego" href="juego.html">ir al juego</a>
 
 
-    <script src="dom.js"></script>
-    <script src="logic.js"></script>
+
+
+
+
+    <script src="scripts/dom.js"></script>
+    <script src="scripts/logic.js"></script>
     <script src="/back end/index.js"></script>
 </body>
 </html>
