@@ -1,7 +1,49 @@
 html, body{
     height: 100%;
-
+    margin: 0;
+    overflow: hidden;
 }   
+
+.body-index button{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 999px;
+    border: 2px solid rgb(255, 255, 255);
+    padding: 0.8rem 1.4rem;
+    margin-left: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3.4rem;
+    min-width: 11rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.body-index button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.body-index button:hover img{
+    filter: invert(0);
+}
+
+d.body-index button:active{
+    transform: scale(0.97);
+    background-color: rgb(230, 230, 230);
+}
+
+.body-index button img{
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    filter: invert(1);
+    transition: filter 0.2s ease;
+}
 
 .body-index{
     margin: 0;
@@ -9,12 +51,16 @@ html, body{
     display: grid;
     place-items: center;
     height: 100vh;
+    grid-template-rows: 5fr 1fr 3fr;
+    grid-template-columns: 1fr;
 }
 
 .body-index h1{
     font-family: "BBH Bartle", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 5rem;
+    color: rgb(255, 255, 255);
 
 }
 
@@ -25,8 +71,8 @@ html, body{
     height: 100%;
 }
 body{
-
-    background-image: url("a.png");
+    background-blend-mode: luminosity;
+    background-image: url("wallpaper.png");
     background-size: cover;    
     position: relative;
     background-color: black;
