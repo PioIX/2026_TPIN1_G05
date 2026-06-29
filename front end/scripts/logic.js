@@ -174,8 +174,9 @@ function siguiente(){
 
 //                            Validacion
 // ==============================================================================================
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-function validarRta(){
+async function validarRta(){
     const rta = ingresoRta()
     if(intento){
         intento= false
@@ -197,7 +198,7 @@ function validarRta(){
         if (contadorIntento==5) {
             console.log("henekejlhethkjhfeoerhreo")
             
-            document.getElementById("siguienteBtn").remove()
+
             document.getElementById("ashudaBtn").remove()
 
             document.getElementById("juego").innerHTML += `
@@ -207,7 +208,10 @@ function validarRta(){
             <img onclick= "window.location.reload()" id="voverAJugarBtn" src="flecha de recarga.png" alt="">`
 
             postPuntajeData()
-        }
+        }else{
+            await delay(3000)    
+            siguiente()    
+        } 
     }else{
         console.log("weweeee")
     }
@@ -215,7 +219,7 @@ function validarRta(){
 
 }
 
-function validarOpciones(aux, i){
+async function validarOpciones(aux, i){
     if(intento){
         intento=false
         if (aux == banderaIndex) {
@@ -241,7 +245,7 @@ function validarOpciones(aux, i){
         }
         contadorIntento+=1
         if (contadorIntento==5) {
-            document.getElementById("siguienteBtn").remove()
+
             document.getElementById("ashudaBtn").remove()
 
             document.getElementById("juego").innerHTML += `
@@ -251,6 +255,9 @@ function validarOpciones(aux, i){
             <img onclick= "window.location.reload()" id="voverAJugarBtn" src="flecha de recarga.png" alt="">`
 
             postPuntajeData()
+        }else{
+            await delay(3000)    
+            siguiente()    
         }
     }else{
         console.log("wewewewewe")
@@ -295,8 +302,8 @@ async function mostrarTabla() {
     
     let res = await fetch(`http://localhost:4000/partida?id_user=${loggedId.id_user}`)
     let response = await res.json()
-    console.log(response.puntajes);
-    
+    console.log(response);
+
     let elementosLista = ""
     document.getElementById("tabla").innerHTML=`
     <tr>
@@ -304,16 +311,19 @@ async function mostrarTabla() {
         <th>Cantidad de correctas</th>
         <th>Puntaje</th>
     </tr>`
-    for (let i = 0; i < 5; i++) {
+
+    for (let i = 0; i < response.length; i++) {
         const element = response[i];
         elementosLista += `
         <tr>
             <td>${i+1}.</td>
-            <td>${element.cant_correctas}</td
+            <td>${element.cant_correctas}</td>
             <td>${element.puntaje}</td>
         </tr>
         `;        
     }
+
+
 
     document.getElementById("tabla").innerHTML += elementosLista
 }
