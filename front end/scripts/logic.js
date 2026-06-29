@@ -303,7 +303,7 @@ async function mostrarTabla() {
     let res = await fetch(`http://localhost:4000/partida?id_user=${loggedId.id_user}`)
     let response = await res.json()
     console.log(response);
-    
+
     let elementosLista = ""
     document.getElementById("tabla").innerHTML=`
     <tr>
@@ -311,7 +311,8 @@ async function mostrarTabla() {
         <th>Cantidad de correctas</th>
         <th>Puntaje</th>
     </tr>`
-    for (let i = 0; i < 5; i++) {
+
+    for (let i = 0; i < response.length; i++) {
         const element = response[i];
         elementosLista += `
         <tr>
@@ -321,6 +322,8 @@ async function mostrarTabla() {
         </tr>
         `;        
     }
+
+
 
     document.getElementById("tabla").innerHTML += elementosLista
 }

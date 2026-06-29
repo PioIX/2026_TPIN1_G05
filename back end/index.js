@@ -132,7 +132,10 @@ app.get('/partida', async function(req,res){
     respuesta = await realizarQuery(`
         SELECT * FROM Partidas  
         WHERE id_user=${req.query.id_user}
-        ORDER BY puntaje DESC`)
+        ORDER BY puntaje DESC
+        LIMIT 5
+        `
+    )
 
 
         
