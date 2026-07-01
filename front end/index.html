@@ -10,8 +10,33 @@
     <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 </head>
 <body class="body-index">
-    <h1>WORLD QUIZ</h1>
-    <a href="juego.html"><button>Jugar <img src="flecha.png" alt="Jugar"></button></a>
-    <a href="htp.html"><button>¿Como se juega?</button></a>
+
+    <div id="slider-left" class="slider-container-vertical">
+        <div class="slider-viewport-vertical">
+            <div class="slider-track-vertical track-up">
+                <div id="track-left"></div>
+                <div id="track-left-dup"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="slider-right" class="slider-container-vertical">
+        <div class="slider-viewport-vertical">
+            <div class="slider-track-vertical track-down">
+                <div id="track-right"></div>
+                <div id="track-right-dup"></div>
+            </div>
+        </div>
+    </div>
+    
+
+    <h1><span class="title-text" id="title-span">WORLD QUIZ</span></h1>
+    
+    <div class="buttons-container">
+        <a href="login.html" id="btnJugar"><button>Jugar <img src="flecha.png" alt="Jugar"></button></a>
+        <a href="htp.html" id="btnComoJugar"><button>¿Como se juega?</button></a>
+    </div>
+    <script src="scripts/slider.js"></script>
 </body>
-</html> 
+</html>
