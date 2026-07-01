@@ -155,7 +155,7 @@ function generarOpciones(){
     document.getElementById("secRta").innerHTML += elementosLista
 
 
-    
+    document.getElementById("ashudaBtn").remove()
 
 }
 function siguiente(){
@@ -164,8 +164,13 @@ function siguiente(){
     document.getElementById("secRta").innerHTML=`
     <input style="margin-bottom: 1.5rem; margin-top: 0;" id="inputRta" type="text" placeholder="¿De qué país es esta bandera?" >
     <button onclick="validarRta()" >fhbuyerfg</button>`
-    document.getElementById("secRta").style.display="block"
 
+
+    document.getElementById("secRta").style.display="block"
+    document.getElementById("juego").innerHTML+=`
+    <img onclick= "generarOpciones()" id="ashudaBtn" src="signoPregunta.png" alt="">
+    
+    `
     
 }
 
