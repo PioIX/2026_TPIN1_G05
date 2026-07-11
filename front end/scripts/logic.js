@@ -600,3 +600,6 @@ async function deletePaisData() {
 
     
 }
+function cerrarSesion(){
+    window.location.href = "login.html"
+}

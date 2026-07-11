@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Manejar click en botón Jugar
     btnJugar.addEventListener('click', (e) => {
-        handleButtonClick(e, 'juego.html');
+        handleButtonClick(e, 'login.html');
     });
     
     // Manejar click en botón Como Jugar
