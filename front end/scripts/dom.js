@@ -1,17 +1,13 @@
 function ingresoCorreo() {
     return document.getElementById("correo").value
-
 }
 
 function ingresoContra() {
     return document.getElementById("contra").value
-
-
 }
 
 function ingresoUsuario() {
     return document.getElementById("usuario").value
-
 }
 
 function ingresoRta(){
@@ -26,9 +22,6 @@ function ingresoUserId(){
     return document.getElementById("selectUser").value
 }
 
-
-
-
 function ingresoPaisId(){
     return document.getElementById("idPais").value
 }
@@ -36,6 +29,7 @@ function ingresoPaisId(){
 function ingresoPaisNom(){
     return document.getElementById("nomPais").value
 }
+
 function ingresoPaisArchivo(){
     return document.getElementById("nomArchivo").value
 }

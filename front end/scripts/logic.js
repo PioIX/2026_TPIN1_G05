@@ -111,6 +111,7 @@ async function cambiarBandera(){
     document.getElementById("secFlag").innerHTML= `<img src="imagenes/${response[banderaIndex].nombre_archivo}.png" alt="">`
 }
 function generarOpciones(){
+	document.getElementById("ashudaBtn").remove();
     
     let array =[]
     let arrayIndice =[]
@@ -145,9 +146,9 @@ function generarOpciones(){
     for (let i = 0; i < arrayIndice.length; i++) {
         const element = arrayBanderas;
         elementosLista += `
-        <button value="${array[arrayIndice[i]]}" id="opc${i}" class="opciones" onclick="validarOpciones(${array[arrayIndice[i]]}, ${i})">${element[array[arrayIndice[i]]].nombre}</button>
-
-        `;        
+        <button value="${array[arrayIndice[i]]}" id="opc${i}" class="opciones" onclick="validarOpciones(${array[arrayIndice[i]]}, ${i})">${element[array[arrayIndice[i]]].nombre}
+		</button>
+		`;        
 
     }
 
@@ -155,7 +156,7 @@ function generarOpciones(){
     document.getElementById("secRta").innerHTML += elementosLista
 
 
-    document.getElementById("ashudaBtn").remove()
+    
 
 }
 function siguiente(){
@@ -163,9 +164,9 @@ function siguiente(){
     cambiarBandera()
     document.getElementById("secRta").innerHTML=`
     <input style="margin-bottom: 1.5rem; margin-top: 0;" id="inputRta" type="text" placeholder="¿De qué país es esta bandera?" >
-    <button onclick="validarRta()" >fhbuyerfg</button>`
+    <button onclick="validarRta()" >Enviar</button>`
 
-
+	
     document.getElementById("secRta").style.display="block"
     document.getElementById("juego").innerHTML+=`
     <img onclick= "generarOpciones()" id="ashudaBtn" src="signoPregunta.png" alt="">
@@ -186,22 +187,22 @@ async function validarRta(){
     if(intento){
         intento= false
         if (rta.toLowerCase() == arrayBanderas[banderaIndex].nombre.toLowerCase() ) {
-            console.log("gooooood");
-            document.getElementById("inputRta").style.backgroundColor="rgba(0, 128, 0, 0.226)"
+            console.log("Correcto");
+            document.getElementById("inputRta").style.backgroundColor="#719f4a"
             puntaje+=10
             cantCorrectas+=1
             
         } else{
-            console.log("no gooood")
+            console.log("Incorrecto")
             document.getElementById("inputRta").value=`${arrayBanderas[banderaIndex].nombre}`
-            document.getElementById("inputRta").style.backgroundColor="rgba(128, 0, 0, 0.226)"
+            document.getElementById("inputRta").style.backgroundColor="#611a24"
 
 
         }
 
         contadorIntento+=1
         if (contadorIntento==5) {
-            console.log("henekejlhethkjhfeoerhreo")
+            console.log("Fin de los intentos")
             
 
             document.getElementById("ashudaBtn").remove()
@@ -230,20 +231,20 @@ async function validarOpciones(aux, i){
         if (aux == banderaIndex) {
             puntaje+=5
             cantCorrectas+=1
-            console.log("       ;-)")
-
-
-            document.getElementById(`opc${i}`).style.backgroundColor="rgba(0, 128, 0, 0.226)"
+            console.log("Correcto");
+            document.getElementById(`opc${i}`).style.backgroundColor="#6cff4e"
+			document.getElementById(`opc${i}`).style.color="black"
 
         }else{
-            console.log("       ಥ_ಥ")
-            document.getElementById(`opc${i}`).style.backgroundColor="rgba(128, 0, 0, 0.226)"
-
+            console.log("Incorrecto");
+            document.getElementById(`opc${i}`).style.backgroundColor="red"
+			document.getElementById(`opc${i}`).style.color="black"
 
             for (let a = 0;a < 4; a++) {
                 const element= document.getElementById(`opc${a}`).value
                 if(element==banderaIndex){
-                    document.getElementById(`opc${a}`).style.backgroundColor="rgba(0, 128, 0, 0.226)"   
+                    document.getElementById(`opc${a}`).style.backgroundColor="white";
+					document.getElementById(`opc${a}`).style.color="black";    
                 }
             }
 
@@ -599,7 +600,4 @@ async function deletePaisData() {
     getPaises()
 
     
-}
-function cerrarSesion(){
-    window.location.href = "login.html"
 }

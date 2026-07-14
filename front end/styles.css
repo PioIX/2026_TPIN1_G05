@@ -4,6 +4,11 @@ html, body{
     overflow: hidden;
 }   
 
+.text-container{
+	display: flex;
+	flex-direction: column;
+}
+
 .body-index{
     margin: 0;
     align-items: center;
@@ -16,7 +21,7 @@ html, body{
     background-color: black;
 }
 
-/* Contenedores de sliders verticales - 2 sliders en pantalla completa */
+
 .slider-container-vertical {
     position: fixed;
     width: 50vw;
@@ -27,19 +32,19 @@ html, body{
     background-color: transparent;
 }
 
-/* Slider Izquierda */
+
 #slider-left {
     top: 0;
     left: 0;
 }
 
-/* Slider Derecha */
+
 #slider-right {
     top: 0;
     right: 0;
 }
 
-/* Viewport vertical para los sliders */
+
 .slider-viewport-vertical {
     position: absolute;
     top: 50%;
@@ -53,14 +58,14 @@ html, body{
     transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Track vertical para animación de banderas */
+
 .slider-track-vertical {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    gap: 10vh; /* Espacio grande para mostrar una bandera a la vez */
+    gap: 10vh; 
     will-change: transform;
 }
 
@@ -70,7 +75,7 @@ html, body{
     animation: scrollUp 25s linear infinite;
 }
 
-/* Animación hacia abajo - MÁS LENTA */
+
 .track-down #track-right,
 .track-down #track-right-dup {
     animation: scrollDown 25s linear infinite;
@@ -94,7 +99,7 @@ html, body{
     }
 }
 
-/* Estilos de las banderas en sliders verticales - una bandera por vez en pantalla completa */
+
 .slider-track-vertical img {
     width: 40vw;
     height: auto;
@@ -106,7 +111,7 @@ html, body{
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-/* Efecto flash al hacer click - sin cambio de tamaño */
+
 .slider-track-vertical.speed-boost img {
     filter: brightness(4);
     transition: filter 0.6s ease-out;
@@ -116,7 +121,7 @@ html, body{
     filter: brightness(0.5);
 }
 
-/* Acelerar animación al hacer click - Jugar (más dinámico y rápido) */
+
 body.animate-jugar .track-up #track-left,
 body.animate-jugar .track-up #track-left-dup {
     animation-duration: 1.2s !important;
@@ -127,7 +132,7 @@ body.animate-jugar .track-down #track-right-dup {
     animation-duration: 1.5s !important;
 }
 
-/* Como se juega (más tranquilo y más rápido que el normal pero menos que jugar) */
+
 body.animate-comojugar .track-up #track-left,
 body.animate-comojugar .track-up #track-left-dup {
     animation-duration: 2.5s !important;
@@ -164,7 +169,7 @@ body.cinematic-mode::after {
     }
 }
 
-/* Título con efecto multilingüe */
+
 .body-index h1 {
     font-family: "BBH Bartle", sans-serif;
     font-weight: 400;
@@ -184,13 +189,13 @@ body.cinematic-mode::after {
     transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-/* Animación rápida del título al hacer click en botones */
+
 .title-text.fast-change {
     opacity: 1;
     transform: scale(1);
 }
 
-/* Botones */
+
 .buttons-container {
     display: flex;
     gap: 1.5rem;
@@ -457,9 +462,70 @@ h2{
     text-decoration: none;
 }
 
-#cerrarSesionBtn{
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    
+.boton-rta {
+
+  background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+  background-size: 300% 300%;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 60px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.6), 0 0 40px rgba(255, 140, 0, 0.4), 0 0 80px rgba(64, 224, 208, 0.3);
+  transition: all 0.3s ease;
+  animation: gradientShift 4s ease-in-out infinite, pulse 2s ease-in-out infinite;
+  z-index: 1; 
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+
+.boton-rta:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 0 30px rgba(255, 0, 128, 0.8), 0 0 60px rgba(255, 140, 0, 0.6), 0 0 100px rgba(64, 224, 208, 0.5);
+  animation: gradientShift 4s ease-in-out infinite; /* Mantiene el gradiente, pero detiene el pulso para evitar conflicto */
+}
+
+
+.boton-rta:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+.boton-rta::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(45deg, #ff0080, #ff8c00, #40e0d0, #8a2be2);
+  background-size: 300% 300%;
+  border-radius: 50px;
+  z-index: -1;
+  filter: blur(15px);
+  opacity: 0.7;
+  animation: gradientShift 4s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+}
+
+.boton-rta:hover::before {
+  opacity: 1;
+  filter: blur(20px);
 }
