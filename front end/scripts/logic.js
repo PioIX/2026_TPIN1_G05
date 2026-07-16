@@ -168,10 +168,18 @@ function siguiente(){
 
 	
     document.getElementById("secRta").style.display="block"
-    document.getElementById("juego").innerHTML+=`
-    <img onclick= "generarOpciones()" id="ashudaBtn" src="signoPregunta.png" alt="">
     
-    `
+    const ashudaBtn = document.getElementById("ashudaBtn")
+
+    if (ashudaBtn==null) {
+        document.getElementById("juego").innerHTML+=`
+        <img onclick= "generarOpciones()" id="ashudaBtn" src="signoPregunta.png" alt="">
+    
+        `         
+    }
+    
+
+    
     
 }
 
@@ -204,9 +212,15 @@ async function validarRta(){
         if (contadorIntento==5) {
             console.log("Fin de los intentos")
             
+            
+            document.getElementById("secRta").innerHTML=""
+            document.getElementById("secRta").innerHTML =`
+            <input style="margin-bottom: 1.5rem; margin-top: 0;" id="inputRta" type="text" placeholder="Te quedaste sin intentos!!!" ></input>
+            `
+	        document.getElementById("ashudaBtn").remove();
 
-            document.getElementById("ashudaBtn").remove()
 
+            
             document.getElementById("juego").innerHTML += `
             <img onclick= "irATablas()" id="tablasBtn" src="cuadro.png" alt="">`
                         
@@ -251,9 +265,17 @@ async function validarOpciones(aux, i){
         }
         contadorIntento+=1
         if (contadorIntento==5) {
+            const ashudaBtn = document.getElementById("ashudaBtn")
+            if (ashudaBtn!=null) {
+                document.getElementById("ashudaBtn").remove()
+                
+            }
 
-            document.getElementById("ashudaBtn").remove()
-
+            document.getElementById("secRta").style.display="block"
+            
+            document.getElementById("secRta").innerHTML=`
+            <input style="margin-bottom: 1.5rem; margin-top: 0;" id="inputRta" type="text" placeholder="Te quedaste sin intentos!!!" ></input>
+            `
             document.getElementById("juego").innerHTML += `
             <img onclick= "irATablas()" id="tablasBtn" src="cuadro.png" alt="">`
                         
@@ -339,7 +361,7 @@ async function mostrarTablaVarias() {
     let res = await fetch(`http://localhost:4000/partidasVarias`)
     let response = await res.json()
     let elementosLista = ""
-    document.getElementById("tabla").innerHTML=`
+    document.getElementById("tabla2").innerHTML=`
     <tr>
         <th></th>
         <th>Usuario</th>
@@ -356,7 +378,7 @@ async function mostrarTablaVarias() {
         `;        
     }
 
-    document.getElementById("tabla").innerHTML += elementosLista
+    document.getElementById("tabla2").innerHTML += elementosLista
 }
 
 async function getUsuario(){

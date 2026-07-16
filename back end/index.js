@@ -172,6 +172,7 @@ try {
         FROM Usuarios 
         INNER JOIN Partidas ON Usuarios.id_user = Partidas.id_user
         GROUP BY Partidas.id_user, Usuarios.usuario
+        ORDER BY puntajes DESC
     
         
         `)
