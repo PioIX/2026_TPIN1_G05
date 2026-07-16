@@ -4,12 +4,9 @@ html, body{
     overflow: hidden;
 }   
 
-visible{
-    display:auto;
-}
-
-hidden {
-    display: none;
+h2{
+    font-family:"BBH Bartle", sans-serif;
+    font-weight: 100;
 }
 
 .text-container{
@@ -370,6 +367,22 @@ h3{
     color: #e0e0e0;
     margin: 2rem 0 2rem 4px;
 }
+.menuBtn{
+    background-color: rgba(20, 20, 20, 0.8);
+    color: #e0e0e0;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+}
+
+.menuBtn:hover{
+    background-color: rgba(40, 40, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
 .loginBtn{
     background-color: rgba(20, 20, 20, 0.8);
     color: #e0e0e0;
@@ -380,6 +393,25 @@ h3{
     transition: all 0.3s ease;
 }
 .loginBtn:hover{
+    background-color: rgba(40, 40, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cerrarSesionBtn{
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    right: 5px;
+    background-color: rgba(20, 20, 20, 0.8);
+    color: #e0e0e0;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.7rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cerrarSesionBtn:hover{
     background-color: rgba(40, 40, 40, 0.8);
     border-color: rgba(255, 255, 255, 0.2);
 }
@@ -480,6 +512,12 @@ h3{
     justify-self: center;
     grid-column: 1 / -1;
 }
+
+p{
+    font-family: arial, sans-serif;
+}
+
+
 
 table {
     font-family: arial, sans-serif;

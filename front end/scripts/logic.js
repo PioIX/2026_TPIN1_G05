@@ -339,10 +339,12 @@ async function mostrarTabla() {
         <th>Cantidad de correctas</th>
         <th>Puntaje</th>
     </tr>`
-
+console.log("antes del for")
     for (let i = 0; i < response.length; i++) {
         const element = response[i];
+                console.log(element)
         elementosLista += `
+
         <tr>
             <td>${i+1}.</td>
             <td>${element.cant_correctas}</td>
@@ -622,4 +624,13 @@ async function deletePaisData() {
     getPaises()
 
     
+}
+
+
+async function cerrarSesion() {
+    window.location.href = "login.html";
+}
+
+async function menuPrincipal(){
+    window.location.href = "index.html";
 }
