@@ -13,9 +13,9 @@
             <h2>Usuarios</h2>
             <div style="width: 100%;">
         
-                <input id="correo" type="text" placeholder="correo">
-                <input id="usuario" type="text" placeholder="usuario">
-                <input id="contra" type="text" placeholder="contraseña">
+                <input id="correo" type="text" placeholder="Correo">
+                <input id="usuario" type="text" placeholder="Usuario">
+                <input id="contra" type="text" placeholder="Contraseña">
                 
                 
                 
@@ -25,40 +25,49 @@
                 
             </select>
             
-            <button onclick="postUserData()" >registrarse</button>
-            <button onclick="deleteUserData()">eliminar</button>
-            <button onclick="putUserData()">actualizar</button>
-        
-        
             
+            <button class="adminBtn" onclick="postUserData()" >registrar</button>
+            <button class="adminBtn" onclick="deleteUserData()">eliminar</button>
+            <br>
+            <p style="color: white;">Dato a actualizar</p>
             <select id="tipo">
                 <option value="usuario">usuario</option>
                 <option value="correo">correo</option>
                 <option value="contra">contrasaña</option>
                 <option value="todo">todo</option>
             </select>
+            <button class="adminBtn" onclick="putUserData()">actualizar</button>
+        
+        
         </div>
-        <div>
-    
-            <table id="tablaUsuarios"> </table>
-        </div>
+        
+        <table class="tablasAdmin" id="tablaUsuarios"> </table>
+        
     </div>
 
-    <div>
-        <div style="width: 70%;">
-            <input id="idPais" type="number" placeholder="id">
-            <input id="nomPais" type="text" placeholder="nombre">
-            <input id="nomArchivo" type="text" placeholder="nombre de archivo">
+    <div class="contenedores" style="align-items: start;">
 
 
-            <button onclick="postPaisData()" >subir</button>
-            <button onclick="deletePaisData()">eliminar</button>
-            <button onclick="putPaisData()">actualizar</button>
+
+        <div>
+            <h2>Paises</h2>
+            <input id="idPais" type="number" placeholder="Id">
+            <input id="nomPais" type="text" placeholder="Nombre">
+            <input id="nomArchivo" type="text" placeholder="Nombre de archivo">
+
+
+            <button class="adminBtn" onclick="postPaisData()" >subir</button>
+            <button class="adminBtn" onclick="deletePaisData()">eliminar</button>
+            <button class="adminBtn" onclick="putPaisData()">actualizar</button>
         </div>
-        <div id="centrar">
-            <table id="paises"></table>
+        
+
+
+
+
+        <table class="tablasAdmin" id="paises"></table>
     
-        </div>
+        
     </div>
 
     <a id="irAlJuego" href="juego.html">ir al juego</a>
