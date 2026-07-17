@@ -210,6 +210,7 @@ async function validarRta(){
 
         contadorIntento+=1
         if (contadorIntento==5) {
+            await delay(3000)
             console.log("Fin de los intentos")
             
             
@@ -266,6 +267,7 @@ async function validarOpciones(aux, i){
         contadorIntento+=1
         if (contadorIntento==5) {
             const ashudaBtn = document.getElementById("ashudaBtn")
+            await delay(3000)
             if (ashudaBtn!=null) {
                 document.getElementById("ashudaBtn").remove()
                 
